@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiDocumentationComparer", "ApiDocumentationComparer\ApiDocumentationComparer.csproj", "{67FBF05B-C783-44E8-8C6B-99D049FF5C80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiDocumentationComparer.Infrastructure", "ApiDocumentationRetriever\ApiDocumentationComparer.Infrastructure.csproj", "{B2837C29-E89F-453B-9C76-3C3A90EDBF6C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{67FBF05B-C783-44E8-8C6B-99D049FF5C80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67FBF05B-C783-44E8-8C6B-99D049FF5C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67FBF05B-C783-44E8-8C6B-99D049FF5C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67FBF05B-C783-44E8-8C6B-99D049FF5C80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2837C29-E89F-453B-9C76-3C3A90EDBF6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2837C29-E89F-453B-9C76-3C3A90EDBF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2837C29-E89F-453B-9C76-3C3A90EDBF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2837C29-E89F-453B-9C76-3C3A90EDBF6C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25E06112-343F-4BC4-B6FB-CBD3494365CC}
+	EndGlobalSection
+EndGlobal

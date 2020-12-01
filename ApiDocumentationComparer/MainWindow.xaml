@@ -1,0 +1,68 @@
+﻿<Window x:Class="ApiDocumentationComparer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ApiDocumentationComparer"
+        xmlns:converters="clr-namespace:ApiDocumentationComparer.Converters"
+        mc:Ignorable="d"
+        Title="Swagger API Documentation Comparer" Height="550" Width="900" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <converters:BoolToBackgroundColorConverter x:Key="BoolToBackgroundColorConverter"></converters:BoolToBackgroundColorConverter>
+        <converters:BoolToForegroundColorConverter x:Key="BoolToForegroundColorConverter"></converters:BoolToForegroundColorConverter>
+        <converters:BoolToVisibilityLoadingConverter x:Key="BoolToVisibilityLoadingConverter"></converters:BoolToVisibilityLoadingConverter>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0" Grid.Column="0">
+            <StackPanel>
+                <Label Margin="5,10,10,0">Current API version URL (e.g. .../swagger/docs/v1)</Label>
+                <TextBox HorizontalAlignment="Stretch" Grid.Column="0" Height="24" Margin="10,0,10,10" Text="{Binding FirstApiUrl}" TextWrapping="Wrap" VerticalAlignment="Top" />
+                <StackPanel Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityLoadingConverter}}">
+                    <Label Margin="10,0,10,0">Endpoints:</Label>
+                    <ListBox Margin="10,0,10,10" ItemsSource="{Binding FirstApiEndpoints}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock
+                                    Background="{Binding IsUpdatedEndpoint, Converter={StaticResource BoolToBackgroundColorConverter}, ConverterParameter='#FFD27F'}" 
+                                    Foreground="{Binding IsNewEndpoint, Converter={StaticResource BoolToForegroundColorConverter}, ConverterParameter='#008000'}" 
+                                    Text="{Binding Config.Url}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <ScrollViewer Grid.Row="0" Grid.Column="1">
+            <StackPanel>
+                <Label Margin="5,10,10,0">Older version API URL (e.g. .../swagger/docs/v1)</Label>
+                <TextBox HorizontalAlignment="Stretch" Grid.Column="1" Height="24" Margin="10,0,10,10" Text="{Binding SecondApiUrl}" TextWrapping="Wrap" VerticalAlignment="Top" />
+                <StackPanel Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibilityLoadingConverter}}">
+                    <Label Margin="10,0,10,0">Endpoints:</Label>
+                    <ListBox Margin="10,0,10,10" ItemsSource="{Binding SecondApiEndpoints}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock 
+                                    Background="{Binding IsUpdatedEndpoint, Converter={StaticResource BoolToBackgroundColorConverter}, ConverterParameter='#FFD27F'}" 
+                                    Foreground="{Binding IsDeletedEndpoint, Converter={StaticResource BoolToForegroundColorConverter}, ConverterParameter='#FF0000'}" 
+                                    Text="{Binding Config.Url}"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+        <Button Content="Fetch" Command="{Binding FetchEndpointsCommand}" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Width="150" Height="34" />
+    </Grid>
+</Window>
